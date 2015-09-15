@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenWebif\n"
 "POT-Creation-Date: 2014-11-01 19:04+0100\n"
-"PO-Revision-Date: 2015-09-13 13:45+0200\n"
+"PO-Revision-Date: 2015-09-15 11:29+0200\n"
 "Last-Translator: Javier Sayago - Javilonas <admin@lonasdigital.com\n"
 "Language-Team: OpenLD\n"
 "Language: es\n"
@@ -235,16 +235,16 @@ msgid "Bouquets"
 msgstr "Favoritos"
 
 msgid "Box Info"
-msgstr "Información Deco"
+msgstr "Info del Receptor"
 
 msgid "Box"
-msgstr "Decodificador"
+msgstr "Receptor"
 
 msgid "Box Control"
-msgstr "Control Deco"
+msgstr "Controlar Rceptor"
 
 msgid "Box Uptime"
-msgstr "Funcionamiento Decodificador"
+msgstr "Tiempo activo"
 
 msgid "Brand"
 msgstr "Marca"
@@ -472,7 +472,7 @@ msgid "On"
 msgstr "Encendido"
 
 msgid "Open Source Web Interface for Linux set-top box"
-msgstr "Interfaz Web de Código Abierto para Decodificadores Linux"
+msgstr "Interfaz Web de Código Abierto para Receptores Linux"
 
 msgid "Show box name in header"
 msgstr "Mostrar nombre del receptor en cabecera"
@@ -505,7 +505,7 @@ msgid "Radio"
 msgstr "Radio"
 
 msgid "Reboot Box"
-msgstr "Reiniciar Deco"
+msgstr "Reiniciar Receptor"
 
 msgid "Recording Status"
 msgstr "Estado de Grabación"
