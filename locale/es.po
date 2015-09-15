@@ -241,7 +241,7 @@ msgid "Box"
 msgstr "Receptor"
 
 msgid "Box Control"
-msgstr "Controlar Rceptor"
+msgstr "Controlar Receptor"
 
 msgid "Box Uptime"
 msgstr "Tiempo activo"
