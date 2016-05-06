@@ -54,7 +54,7 @@ class grabScreenshot(resource.Resource):
 		try:
 			ref = self.session.nav.getCurrentlyPlayingServiceReference().toString()
 		except:
-			ref = None 
+			ref = None
 
 		if ref is not None:
 			self.sref = '_'.join(ref.split(':', 10)[:10])

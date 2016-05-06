@@ -766,7 +766,7 @@ def getMultiEpg(self, ref, begintime=-1, endtime=None):
 			if not timerlist.has_key(str(timer.service_ref)):
 				timerlist[str(timer.service_ref)] = []
 			timerlist[str(timer.service_ref)].append(timer)
-		
+
 		if begintime == -1:
 			# If no start time is requested, use current time as start time and extend
 			# show all events until 6:00 next day

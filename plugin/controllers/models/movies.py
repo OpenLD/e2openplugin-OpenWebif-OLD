@@ -168,13 +168,13 @@ def getMovieList(directory=None, tag=None, rargs=None, locations=None):
 				filename = '/'.join(serviceref.toString().split("/")[1:])
 				filename = '/'+filename
 				pos = getPosition(filename + '.cuts', Len)
-				
+
 				# get txt
 				name, ext = os.path.splitext(filename)
 				ext = ext.lower()
-				
+
 				txtdesc = ""
-				
+
 				if ext != 'ts':
 					txtfile = name + '.txt'
 					if fileExists(txtfile):
@@ -196,12 +196,13 @@ def getMovieList(directory=None, tag=None, rargs=None, locations=None):
 				if ext == '' and txtdesc != '':
 					ext = txtdesc
 
+				desc = info.getInfoString(serviceref, iServiceInformation.sDescription)
 				servicename = ServiceReference(serviceref).getServiceName().replace('\xc2\x86', '').replace('\xc2\x87', '')
 				movie = {}
 				movie['filename'] = filename
 				movie['filename_stripped'] = filename.split("/")[-1]
 				movie['eventname'] = servicename
-				movie['description'] = info.getInfoString(serviceref, iServiceInformation.sDescription)
+				movie['description'] = unicode(desc,'utf_8', errors='ignore').encode('utf_8', 'ignore')
 				movie['begintime'] = begin_string
 				movie['serviceref'] = serviceref.toString()
 				movie['length'] = Len
@@ -212,7 +213,7 @@ def getMovieList(directory=None, tag=None, rargs=None, locations=None):
 				except:
 					movie['filesize'] = 0
 				movie['fullname'] = serviceref.toString()
-				movie['descriptionExtended'] = ext
+				movie['descriptionExtended'] = unicode(ext,'utf_8', errors='ignore').encode('utf_8', 'ignore')
 				movie['servicename'] = sourceRef.getServiceName().replace('\xc2\x86', '').replace('\xc2\x87', '')
 				movie['recordingtime'] = rtime
 				movie['lastseen'] = pos
@@ -233,7 +234,7 @@ def removeMovie(session, sRef, Force=False):
 	result = False
 	deleted = False
 	message="service error"
-	
+
 	if service is not None:
 		serviceHandler = eServiceCenter.getInstance()
 		offline = serviceHandler.offlineOperations(service.ref)
@@ -282,7 +283,7 @@ def removeMovie(session, sRef, Force=False):
 				result = True
 	else:
 		message="no offline object"
-	
+
 	if result == False:
 		return {
 			"result": False,
@@ -401,7 +402,7 @@ def renameMovie(session, sRef, newname):
 	return _moveMovie (session,sRef,newname=newname)
 
 def getMovieTags(sRef = None, addtag = None, deltag = None):
-	
+
 	if sRef is not None:
 		result = False
 		service = ServiceReference(sRef)
@@ -450,7 +451,7 @@ def getMovieTags(sRef = None, addtag = None, deltag = None):
 			"result": result,
 			"resulttext" : "Recording not found"
 		}
-	
+
 	tags = []
 	wr = False
 	if fileExists(MOVIETAGFILE):
@@ -472,4 +473,3 @@ def getMovieTags(sRef = None, addtag = None, deltag = None):
 		"result": True,
 		"tags": tags
 	}
-
