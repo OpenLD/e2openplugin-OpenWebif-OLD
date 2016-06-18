@@ -663,8 +663,8 @@ msgstr "Memoria Total"
 msgid "Tuner Bit Error Rate BER"
 msgstr "Bit de Tasa de Error del sintonizador BER"
 
-msgid "Tuner Number (0-3)"
-msgstr "Numero de Sintonizador (0-3)"
+msgid "Tuner Number"
+msgstr "Número de Sintonizador"
 
 msgid "Tuner Signal"
 msgstr "Señal del Sintonizador"
