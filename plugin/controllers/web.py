@@ -190,7 +190,7 @@ class WebController(BaseController):
 	def P_getcurrlocation(self, request):
 		return getCurrentLocation()
 
-#TODO: remove the setting for xmbc and use a extra url parameter 
+#TODO: remove the setting for xmbc and use a extra url parameter
 #the openwebif config setting is not the right position
 
 	def P_getallservices(self, request):
@@ -207,7 +207,7 @@ class WebController(BaseController):
 					service["servicename"] = "%d - %s" % (count + 1, service["servicename"])
 					count += 1
 			return bouquets
-		
+
 # TODO : remove this if the setting is removed
 		if not config.OpenWebif.xbmcservices.value:
 			return getAllServices(type)
@@ -326,7 +326,7 @@ class WebController(BaseController):
 			dirname = request.args["dirname"][0]
 		self.isGZ=True
 		return getMovieList(dirname, tag, request.args)
-	
+
 	def P_fullmovielist(self, request):
 		self.isGZ=True
 		return getAllMovies()
@@ -335,11 +335,11 @@ class WebController(BaseController):
 		tag = None
 		if "tag" in request.args.keys():
 			tag = request.args["tag"][0]
-		
+
 		dirname = None
 		if "dirname" in request.args.keys():
 			dirname = request.args["dirname"][0]
-		
+
 		request.setHeader("content-type", "text/html")
 		return getMovieList(dirname, tag)
 
@@ -438,7 +438,7 @@ class WebController(BaseController):
 			elif "yes" in mode:
 				vpsplugin_enabled = True
 				vpsplugin_overwrite = True
-		return { 
+		return {
 			"vpsplugin_time":vpsplugin_time,
 			"vpsplugin_overwrite":vpsplugin_overwrite,
 			"vpsplugin_enabled":vpsplugin_enabled
@@ -854,7 +854,7 @@ class WebController(BaseController):
 		event['event']['recording_margin_before'] = config.recording.margin_before.value
 		event['event']['recording_margin_after'] = config.recording.margin_after.value
 		return event
-	
+
 	def P_getcurrent(self, request):
 		info = getCurrentService(self.session)
 		now = getNowNextEpg(info["ref"], 0)
@@ -1184,4 +1184,3 @@ class WebController(BaseController):
 					"lang": subt[4]
 				})
 		return ret
-

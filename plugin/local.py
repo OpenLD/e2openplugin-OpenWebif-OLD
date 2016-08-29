@@ -325,7 +325,7 @@ tstrings = {'mo': _("Mo"),
 	'at_settings': _("Settings"),
 	'at_delete_autotimer_question': _("Do you really want to delete the AT"),
 	'at_label_series': _("Label series"),
-	
+
 	'ats_auto_timmer_settings': _("AutoTimer Settings"),
 	'ats_autopoll': _("AutoPoll"),
 	'ats_interval': _("Interval (in h)"),

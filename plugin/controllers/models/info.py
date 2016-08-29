@@ -70,7 +70,7 @@ def normalize_ipv6(orig):
 def getAdapterIPv6(ifname):
 	addr = _("IPv4-only kernel")
 	firstpublic = None
-	
+
 	if fileExists('/proc/net/if_inet6'):
 		addr = _("IPv4-only Python/Twisted")
 
@@ -279,7 +279,7 @@ def getInfo():
 			free = int((stat.f_bfree/1024) * (stat.f_bsize/1024))
 		else:
 			free = -1
-		
+
 		if free <= 1024:
 			free = "%i MB" % free
 		else:
