@@ -38,7 +38,7 @@ def _getTrashDir(path):
 	else:
 		path = path + "/" + TRASHDIRNAME
 	if not fileExists(path):
-		statvfs = os.statvfs(path.rstrip(trash_dir_name))
+		statvfs = os.statvfs(path.rstrip(TRASHDIRNAME))
 		free = (statvfs.f_frsize * statvfs.f_bavail) / (1024 * 1024 * 1024)
 		if free < 15:
 			return None
@@ -168,13 +168,13 @@ def getMovieList(directory=None, tag=None, rargs=None, locations=None):
 				filename = '/'.join(serviceref.toString().split("/")[1:])
 				filename = '/'+filename
 				pos = getPosition(filename + '.cuts', Len)
-
+				
 				# get txt
 				name, ext = os.path.splitext(filename)
 				ext = ext.lower()
-
+				
 				txtdesc = ""
-
+				
 				if ext != 'ts':
 					txtfile = name + '.txt'
 					if fileExists(txtfile):
@@ -234,7 +234,7 @@ def removeMovie(session, sRef, Force=False):
 	result = False
 	deleted = False
 	message="service error"
-
+	
 	if service is not None:
 		serviceHandler = eServiceCenter.getInstance()
 		offline = serviceHandler.offlineOperations(service.ref)
@@ -283,7 +283,7 @@ def removeMovie(session, sRef, Force=False):
 				result = True
 	else:
 		message="no offline object"
-
+	
 	if result == False:
 		return {
 			"result": False,
@@ -402,7 +402,7 @@ def renameMovie(session, sRef, newname):
 	return _moveMovie (session,sRef,newname=newname)
 
 def getMovieTags(sRef = None, addtag = None, deltag = None):
-
+	
 	if sRef is not None:
 		result = False
 		service = ServiceReference(sRef)
@@ -451,7 +451,7 @@ def getMovieTags(sRef = None, addtag = None, deltag = None):
 			"result": result,
 			"resulttext" : "Recording not found"
 		}
-
+	
 	tags = []
 	wr = False
 	if fileExists(MOVIETAGFILE):
@@ -473,3 +473,4 @@ def getMovieTags(sRef = None, addtag = None, deltag = None):
 		"result": True,
 		"tags": tags
 	}
+

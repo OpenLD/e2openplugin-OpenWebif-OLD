@@ -88,7 +88,7 @@ class AjaxController(BaseController):
 		info = {}
 		info["owiver"] = getOpenWebifVer()
 		return { "info": info }
-
+	
 	def P_boxinfo(self, request):
 		info = getInfo()
 		type = getBoxType()
@@ -108,7 +108,7 @@ class AjaxController(BaseController):
 			event = getSearchEpg(request.args["sstr"][0])
 			event['kinopoisk'] = getLanguage()
 			return event
-		else:
+		else: 
 			return []
 
 	def P_epgdialog(self, request):
@@ -192,7 +192,7 @@ class AjaxController(BaseController):
 			bref = request.args["bref"][0]
 
 		endtime = 1440
-
+				
 		begintime = -1
 		day = 0
 		if "day" in request.args.keys():
@@ -250,7 +250,7 @@ class AjaxController(BaseController):
 			pass
 		loc = getLocations()
 		ret['locations'] = loc['locations']
-
+				
 		try:
 			from Plugins.SystemPlugins.vps import Vps
 			ret['hasVPS'] = 1
@@ -270,3 +270,4 @@ class AjaxController(BaseController):
 	def P_epgr(self, request):
 		ret = {}
 		return ret
+

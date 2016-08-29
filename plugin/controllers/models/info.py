@@ -41,7 +41,7 @@ import sys
 import time
 import string
 
-OPENWEBIFVER = "OWIF 0.4.8"
+OPENWEBIFVER = "OWIF 0.4.9"
 
 STATICBOXINFO = None
 
@@ -70,7 +70,7 @@ def normalize_ipv6(orig):
 def getAdapterIPv6(ifname):
 	addr = _("IPv4-only kernel")
 	firstpublic = None
-
+	
 	if fileExists('/proc/net/if_inet6'):
 		addr = _("IPv4-only Python/Twisted")
 
@@ -279,7 +279,7 @@ def getInfo():
 			free = int((stat.f_bfree/1024) * (stat.f_bsize/1024))
 		else:
 			free = -1
-
+		
 		if free <= 1024:
 			free = "%i MB" % free
 		else:
@@ -320,7 +320,7 @@ def getInfo():
 		})
 
 	info['transcoding'] = False
-	if (info['model'] in ("Solo²", "Duo²", "Solo SE", "Quad", "Quad Plus") or info['machinebuild'] in ('inihdp', 'hd2400', 'et10000', 'xpeedlx3', 'ew7356', 'dags3', 'dags4')):
+	if (info['model'] in ("Solo4K", "Solo²", "Duo²", "Solo SE", "Quad", "Quad Plus") or info['machinebuild'] in ('inihdp', 'hd2400', 'et10000', 'xpeedlx3', 'ew7356', 'dags3', 'dags4')):
 		if os.path.exists(eEnv.resolve('${libdir}/enigma2/python/Plugins/SystemPlugins/TransCodingSetup/plugin.pyo')) or os.path.exists(eEnv.resolve('${libdir}/enigma2/python/Plugins/SystemPlugins/TranscodingSetup/plugin.pyo')) or os.path.exists(eEnv.resolve('${libdir}/enigma2/python/Plugins/SystemPlugins/MultiTransCodingSetup/plugin.pyo')):
 			info['transcoding'] = True
 

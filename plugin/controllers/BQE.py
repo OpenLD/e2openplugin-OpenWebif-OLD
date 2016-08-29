@@ -21,7 +21,7 @@ class BQEWebController(BaseController):
 	def __init__(self, session, path = ""):
 		BaseController.__init__(self, path)
 		self.session = session
-
+	
 	def returnResult(self, req, result):
 		if self.isJson:
 			return { "Result": result }
@@ -37,7 +37,7 @@ class BQEWebController(BaseController):
 	<e2state>%s</e2state>
 	<e2statetext>%s</e2statetext>
 </e2simplexmlresult>""" % ('True' if state else 'False', statetext)
-
+	
 	def buildCommand(self, ids, args):
 		paramlist = ids.split(",")
 		list = {}
@@ -151,7 +151,7 @@ class BQEWebController(BaseController):
 		except ImportError:
 			return self.returnResult(request, [False, 'BouquetEditor plugin not found'])
 
-	def P_Removealternativeservices(self, request):
+	def P_removealternativeservices(self, request):
 		self.withMainTemplate = False
 		try:
 			from BouquetEditor import BouquetEditor
@@ -304,3 +304,4 @@ class BQEController(BaseController):
 		self.putChild("api", BQEApiController(session))
 		self.putChild('tmp', static.File('/tmp'))
 		self.putChild('uploadrestore', BQEUploadFile(session))
+

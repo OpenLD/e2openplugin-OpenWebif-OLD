@@ -113,7 +113,7 @@ class IpkgController(resource.Resource):
 						continue
 				map.update( { package[0] : [ (package[1][:-1] if len(package) < 3 else package[1]),
 					("" if len(package) < 3 else package[2][:-1]),
-					 "0" ,
+					 "0" , 
 					 "0"] } )
 			out = os_popen("opkg list-installed")
 			for line in out:

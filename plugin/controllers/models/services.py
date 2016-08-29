@@ -376,6 +376,7 @@ def getServices(sRef, showAll = True, showHidden = False):
 			if showAll or st == 0:
 				service = {}
 				service['servicereference'] = unicode(sitem[0], 'utf_8', errors='ignore').encode('utf_8', 'ignore')
+				service['program'] = int(service['servicereference'].split(':')[3], 16)
 				service['servicename'] = unicode(sitem[1], 'utf_8', errors='ignore').encode('utf_8', 'ignore')
 				services.append(service)
 
@@ -582,6 +583,39 @@ def getBouquetEpg(ref, begintime=-1, endtime=None):
 
 	return { "events": ret, "result": True }
 
+def getServicesNowNextEpg(sList):
+	ret = []
+	if not sList:
+		return { "events": ret, "result": False }
+
+	sRefList = sList.split(",")
+	search = ['IBDCTSERNX']
+	for service in sRefList:
+		search.append((service, 0, -1))
+		search.append((service, 1, -1))
+
+	epgcache = eEPGCache.getInstance()
+	events = epgcache.lookupEvent(search)
+	if events is not None:
+		for event in events:
+			ev = {}
+			ev['id'] = event[0]
+			ev['begin_timestamp'] = event[1]
+			ev['duration_sec'] = event[2]
+			ev['title'] = event[4]
+			ev['shortdesc'] = event[5]
+			ev['longdesc'] = event[6]
+			#if event[7] is not None:
+			#	achannels = GetWithAlternative(event[7], False)
+			#	if achannels:
+			#		ev['asrefs'] = achannels
+			ev['sref'] = event[7]
+			ev['sname'] = filterName(event[8])
+			ev['now_timestamp'] = event[3]
+			ret.append(ev)
+
+	return { "events": ret, "result": True }
+
 def getBouquetNowNextEpg(ref, servicetype):
 	ref = unquote(ref)
 	ret = []
@@ -767,7 +801,7 @@ def getMultiEpg(self, ref, begintime=-1, endtime=None):
 			if not timerlist.has_key(str(timer.service_ref)):
 				timerlist[str(timer.service_ref)] = []
 			timerlist[str(timer.service_ref)].append(timer)
-
+		
 		if begintime == -1:
 			# If no start time is requested, use current time as start time and extend
 			# show all events until 6:00 next day
@@ -795,7 +829,9 @@ def getMultiEpg(self, ref, begintime=-1, endtime=None):
 				picons[channel] = getPicon(event[4])
 
 			slot = int((event[1]-offset) / 7200)
-			if slot > -1 and slot < 12 and event[1] < lastevent:
+			if slot < 0:
+				slot = 0
+			if slot < 12 and event[1] < lastevent:
 				ret[channel][slot].append(ev)
 
 	return { "events": ret, "result": True, "picons": picons }

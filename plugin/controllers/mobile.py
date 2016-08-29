@@ -124,6 +124,6 @@ class MobileController(BaseController):
 		else:
 			movies = getMovieList()
 		return movies
-
+		
 	def P_about(self, request):
 		return {}
