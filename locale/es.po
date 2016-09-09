@@ -390,9 +390,11 @@ msgstr "Modelo Disco Duro"
 msgid "Hour"
 msgstr "Hora"
 
-msgid "IP address"
-msgstr "Dirección IP"
+#: ../plugin/local.py:114
+msgid "IPv4 address"
+msgstr "Dirección IPv4"
 
+#: ../plugin/local.py:118
 msgid "IPv6 address(es)"
 msgstr "Dirección(es) IPv6"
 
