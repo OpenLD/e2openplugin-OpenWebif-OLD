@@ -2,8 +2,8 @@
 
 #LICENCE
 #
-# This File is part of the Webbouqueteditor plugin
-# and licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported
+# This File is part of the Webbouqueteditor plugin 
+# and licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported 
 # License if not stated otherwise in a files head. To view a copy of this license, visit
 # http://creativecommons.org/licenses/by-nc-sa/3.0/ or send a letter to Creative
 # Commons, 559 Nathan Abbott Way, Stanford, California 94305, USA.
@@ -18,7 +18,7 @@ from Screens.InfoBar import InfoBar
 from ServiceReference import ServiceReference
 from Components.ParentalControl import parentalControl
 from re import compile as re_compile
-from Components.NimManager import nimmanager
+from Components.NimManager import nimmanager 
 
 class BouquetEditor(Source):
 
