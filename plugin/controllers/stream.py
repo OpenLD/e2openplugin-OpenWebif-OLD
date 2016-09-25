@@ -51,8 +51,8 @@ class StreamAdapter:
 		converter_args = []
 		self.converter = Streaming(converter_args)
 		if self.converter:
+			self.converter.source = self
 			try:
-				self.converter.source = self
 				self.request.write(self.converter.getText())
 			except:
 				return
