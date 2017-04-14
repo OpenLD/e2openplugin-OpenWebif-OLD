@@ -96,7 +96,7 @@ class AjaxController(BaseController):
 		if fileExists(getPublicPath("/images/boxes/"+type+".jpg")):
 			info["boximage"] = type+".jpg"
 		else:
-			info["boximage"] = "unknown.jpg"
+			info["boximage"] = "unknown.png"
 		return info
 
 	def P_epgpop(self, request):
