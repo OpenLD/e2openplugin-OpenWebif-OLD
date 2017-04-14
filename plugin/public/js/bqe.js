@@ -20,14 +20,14 @@
 	var BQE = function () {
 		// keep reference to object.
 		var self;
-		
+
 		// Mode=0: TV, Mode=1: Radio
 		var	Mode;
-		
+
 		// keep track of which list in left pane is shown.
 		// 0: satellites, 1: providers, 2: all channels
 		var cType;
-		
+
 		// Array of services type markers.
 		var sType;
 
@@ -49,7 +49,7 @@
 					self.showChannels
 				);
 			},
-		
+
 			// Callback for display left panel services list
 			showChannels: function (options) {
 				$('#channels').html(options);
@@ -108,13 +108,13 @@
 				if (nmode !== self.Mode || nmode === 3) {
 					reload = true;
 				}
-	
+
 				if (nmode > 1) {
 					self.Mode = 0;
 				} else {
 					self.Mode = nmode;
 				}
-	
+
 				if (self.cType === 0) {
 					self.getSatellites(self.showProviders);
 				} else if (self.cType === 1) {
@@ -123,7 +123,7 @@
 					$('#sel0').hide();
 					self.getChannels(self.showChannels);
 				}
-			
+
 				if (reload) {
 					self.getBouquets(self.showBouquets);
 				}
@@ -148,7 +148,7 @@
 					}
 				});
 			},
-		   
+
 			// Callback function for left pane "providers" button.
 			// Fetches provider list, param callback displays list.
 			// @param callback function
@@ -168,7 +168,7 @@
 					}
 				});
 			},
-		
+
 			// Callback function for left pane "channels" button.
 			// Fetches channels list, param callback displays list.
 			// @param callback function
@@ -190,7 +190,7 @@
 					}
 				});
 			},
-		
+
 			// Callback function for fetching right panel bouquets list.
 			// @param callback function display bouquets list
 			getBouquets: function (callback) {
@@ -229,7 +229,6 @@
 					}
 				});
 			},
-		
 
 			// Callback function for selecting bouquet in right panel
 			// bouquets list.
@@ -285,7 +284,7 @@
 					});
 				}
 			},
-		
+
 			// Callback function for bouquet rename button in right pane
 			// Prompts for new bouquet name
 			renameBouquet: function () {
@@ -361,7 +360,7 @@
 				var reqjobs = [];
 				var bref = $('#bql li.ui-selected').data('sref');
 				var dstref = $('#bqs li.ui-selected').data('sref') || '';
-			
+
 				$('#channels li.ui-selected').each(function () {
 					reqjobs.push($.getJSON( '/bouqueteditor/api/addservicetobouquet?sBouquetRef=' + bref + '&sRef=' + $(this).data('sref') + '&sRefBefore=' + dstref, function () {}));
 				});
@@ -395,7 +394,7 @@
 					snames.push($(this).text());
 					jobs.push( jobtemplate + $(this).data('sref') );
 				});
-			
+
 				if (confirm(tstr_bqe_del_channel_question + "\n" + snames.join(', ') + ' ?') === false) {
 					return;
 				}
@@ -417,7 +416,7 @@
 			addMarker: function () {
 				var newname = prompt(tstr_bqe_name_marker + ':');
 				if (newname.length) {
-	
+
 					var bref = $('#bql li.ui-selected').data('sref');
 					var dstref = $('#bqs li.ui-selected').data('sref') || '';
 		
@@ -444,7 +443,7 @@
 				if (item.data('ismarker') == 0) {
 					return;
 				}
-			
+
 				var pos = item.index()
 				var sname = item.text();
 				var sref = item.data('sref');
@@ -474,7 +473,7 @@
 						$(this).hide();
 					}
 				});
-	
+
 				$('#channels li.ui-selected').removeClass('ui-selected');
 				self.setChannelButtons();
 			},
@@ -486,13 +485,13 @@
 				st = typeof st !== 'undefined' ? st : 'False';
 				$('#success').text('');
 				$('#error').text('');
-			
+
 				if (st === true || st === 'True') {
 					$('#success').text(txt);
 				} else {
 					$('#error').text(txt);
 				}
-			
+
 				if (txt !== '') {
 					$('#errorbox').show();
 				} else {
@@ -532,7 +531,7 @@
 				if (confirm(tstr_bqe_restore_question + ' ( ' + fn + ') ?') === false) {
 					return;
 				}
-	
+
 				$('form#uploadrestore')
 					.unbind('submit')
 					.submit(function (e) 

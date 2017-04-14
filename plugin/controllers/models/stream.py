@@ -52,7 +52,7 @@ def getStream(session, request, m3ufile):
 	machinebuild = info["machinebuild"]
 	transcoder_port = None
 	args = ""
-	if model in ("Solo4K", "Solo²", "Duo²", "Solo SE", "Quad", "Quad Plus") or machinebuild in ('dags3', 'dags4'):
+	if model in ("Uno4K", "Ultimo4K", "Solo4K", "Solo²", "Duo²", "Solo SE", "Quad", "Quad Plus") or machinebuild in ('dags7356'):
 		try:
 			transcoder_port = int(config.plugins.transcodingsetup.port.value)
 		except StandardError:
@@ -76,7 +76,7 @@ def getStream(session, request, m3ufile):
 				aspectratio = config.plugins.transcodingsetup.aspectratio.value
 				interlaced = config.plugins.transcodingsetup.interlaced.value
 				args = "?bitrate=%s?width=%s?height=%s?aspectratio=%s?interlaced=%s" % (bitrate, width, height, aspectratio, interlaced)
-	if machinebuild in ('ew7356'):
+	if machinebuild in ('ew7356', 'formuler1'):
 		transcoder_port = 8001
 		if "device" in request.args :
 			if request.args["device"][0] == "phone" :
@@ -132,7 +132,7 @@ def getTS(self, request):
 		machinebuild = info["machinebuild"]
 		transcoder_port = None
 		args = ""
-		if model in ("Solo4K", "Solo²", "Duo²", "Solo SE", "Quad", "Quad Plus"):
+		if model in ("Uno4K", "Ultimo4K", "Solo4K", "Solo²", "Duo²", "Solo SE", "Quad", "Quad Plus"):
 			try:
 				transcoder_port = int(config.plugins.transcodingsetup.port.value)
 			except StandardError:
@@ -156,7 +156,7 @@ def getTS(self, request):
 					aspectratio = config.plugins.transcodingsetup.aspectratio.value
 					interlaced = config.plugins.transcodingsetup.interlaced.value
 					args = "?bitrate=%s?width=%s?height=%s?aspectratio=%s?interlaced=%s" % (bitrate, width, height, aspectratio, interlaced)
-		elif machinebuild in ('ew7356'):
+		elif machinebuild in ('ew7356', 'formuler1'):
 			if "device" in request.args :
 				if request.args["device"][0] == "phone" :
 					portNumber = config.OpenWebif.streamport.value

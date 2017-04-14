@@ -41,7 +41,7 @@ import sys
 import time
 import string
 
-OPENWEBIFVER = "OWIF 0.4.9"
+OPENWEBIFVER = "Mod OWIF 0.5.1"
 
 STATICBOXINFO = None
 
@@ -137,9 +137,13 @@ def getPiconPath():
 	else:
 		return ""
 
-def getInfo():
+def getInfo(session = None, need_fullinfo = False):
 	# TODO: get webif versione somewhere!
 	info = {}
+	global STATICBOXINFO
+
+	if not (STATICBOXINFO is None or need_fullinfo):
+		return STATICBOXINFO
 
 	info['brand'] = getMachineBrand()
 	info['model'] = getMachineName()
@@ -320,7 +324,7 @@ def getInfo():
 		})
 
 	info['transcoding'] = False
-	if (info['model'] in ("Solo4K", "Solo²", "Duo²", "Solo SE", "Quad", "Quad Plus") or info['machinebuild'] in ('inihdp', 'hd2400', 'et10000', 'xpeedlx3', 'ew7356', 'dags3', 'dags4')):
+	if (info['model'] in ("Uno4K", "Ultimo4K", "Solo4K", "Solo²", "Duo²", "Solo SE", "Quad", "Quad Plus") or info['machinebuild'] in ('inihdp', 'hd2400', 'et10000', 'xpeedlx3', 'ew7356', 'dags7356', 'formuler1')):
 		if os.path.exists(eEnv.resolve('${libdir}/enigma2/python/Plugins/SystemPlugins/TransCodingSetup/plugin.pyo')) or os.path.exists(eEnv.resolve('${libdir}/enigma2/python/Plugins/SystemPlugins/TranscodingSetup/plugin.pyo')) or os.path.exists(eEnv.resolve('${libdir}/enigma2/python/Plugins/SystemPlugins/MultiTransCodingSetup/plugin.pyo')):
 			info['transcoding'] = True
 
