@@ -405,5 +405,25 @@ tstrings = {'mo': _("Mo"),
 	'on_id': _("Onid"),
 	's_id': _("Sid"),
 	's_ref': _("Sref"),
+	's_orb': _("Orbital Position"),
 
- 	}
+	'tstr_error_load_page': _("error! Loading Page"),
+	'tstr_timer_added': _("Timer Added"),
+	'tstr_event_not_found': _("Event not found"),
+
+	'tstr_ow_browser_settings': _("OpenWebif Browser Settings"),
+	'tstr_ow_settings': _("OpenWebif Settings"),
+	'tstr_theme': _("Theme"),
+	'tstr_show_picon_in_channel_list': _("Show Picon in channel list"),
+	'tstr_spinner': _("Spinner"),
+	'display_duration_s': _("Display duration (s)"),
+
+	'display_mode': _("Display Mode"),
+	'tv_guide': _("TV Guide"),
+	'timeline': _("Timeline"),
+
+	'free': _("free"),
+	'live': _("live"),
+	'record_stream': _("record/stream"),
+
+	}

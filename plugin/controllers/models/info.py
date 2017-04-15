@@ -126,10 +126,16 @@ def getViewsPath(file = ""):
 def getPiconPath():
 	if pathExists("/media/usb/picon/"):
 		return "/media/usb/picon/"
-	elif pathExists("/media/cf/picon/"):
-		return "/media/cf/picon/"
 	elif pathExists("/media/hdd/picon/"):
 		return "/media/hdd/picon/"
+	elif pathExists("/media/cf/picon/"):
+		return "/media/cf/picon/"
+	elif pathExists("/media/mmcblk0p1/picon/"):
+		return "/media/mmcblk0p1/picon/"
+	elif pathExists("/media/mmc/picon/"):
+		return "/media/mmc/picon/"
+	elif pathExists("/media/uSDextra/picon/"):
+		return "/media/uSDextra/picon/"
 	elif pathExists("/usr/share/enigma2/picon/"):
 		return "/usr/share/enigma2/picon/"
 	elif pathExists("/picon/"):
@@ -257,7 +263,8 @@ def getInfo(session = None, need_fullinfo = False):
 	for i in range(0, nimmanager.getSlotCount()):
 		info['tuners'].append({
 			"name": nimmanager.getNim(i).getSlotName(),
-			"type": nimmanager.getNimName(i) + " (" + nimmanager.getNim(i).getFriendlyType() + ")"
+			"type": nimmanager.getNimName(i) + " (" + nimmanager.getNim(i).getFriendlyType() + ")",
+			"state": 0
 		})
 
 	info['ifaces'] = []
@@ -333,6 +340,18 @@ def getInfo(session = None, need_fullinfo = False):
 	for l in lang:
 		if l in language.getLanguage():
 			info['kinopoisk'] = True
+
+	if session:
+		recs = NavigationInstance.instance.getRecordings()
+		if recs:
+			for rec in recs:
+				nr = rec.frontendInfo().getAll(True)["tuner_number"]
+				info['tuners'][nr]['state'] = 1
+
+		service = session.nav.getCurrentService()
+		if service is not None:
+			nr = service.frontendInfo().getAll(True) ['tuner_number']
+			info['tuners'][nr]['state'] += 2
 
 	global STATICBOXINFO
 	STATICBOXINFO = info
